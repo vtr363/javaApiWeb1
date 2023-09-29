@@ -1,12 +1,10 @@
 package br.com.senac.service;
 
 
-import static org.hamcrest.CoreMatchers.any;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import java.util.Optional;
-
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.internal.matchers.Any;
 import org.modelmapper.ModelMapper;
 
 import br.com.senac.entity.Aluno;
@@ -74,7 +71,7 @@ class AlunoServiceTest {
 	}
 	@Test
 	void whenCreateThenReturnSucces() {
-		Mockito.when(alunoRepository.save(any())).thenReturn(aluno);
+		Mockito.when(alunoRepository.save(Mockito.any())).thenReturn(aluno);
 		Aluno response = alunoService.salvar(aluno);
 		Assertions.assertNotNull(response);
 		Assertions.assertEquals(Aluno.class, response.getClass());
