@@ -7,7 +7,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +19,7 @@ import br.com.senac.entity.Professor;
 import br.com.senac.service.ProfessorService;
 
 @RestController
-@RequestMapping("professores")
+@RequestMapping("professor")
 public class ProfessorResource {
 
 	@Autowired
@@ -27,7 +29,7 @@ public class ProfessorResource {
 	private ProfessorService professorService;
 	
 	@PostMapping
-	public ResponseEntity<ProfessorDTO> cadastrarAluno(@RequestBody ProfessorDTO professorDTO) {
+	public ResponseEntity<ProfessorDTO> cadastrarProfessor(@RequestBody ProfessorDTO professorDTO) {
 		
 		Professor professor = mapper.map(professorDTO,Professor.class);
 		
@@ -41,7 +43,7 @@ public class ProfessorResource {
 	
 	
 	@GetMapping
-	public ResponseEntity<List<ProfessorDTO>> buscarTodosAlunos() {
+	public ResponseEntity<List<ProfessorDTO>> buscarTodosProfessores() {
 		List<Professor> listaProfessor = professorService.buscarTodosProfessor();
 		
 		List<ProfessorDTO> listaProfessorDTO = listaProfessor.stream().map(professor -> 
@@ -52,8 +54,4 @@ public class ProfessorResource {
 		
 		
 	}
-	
-	
-	
-	
 }
